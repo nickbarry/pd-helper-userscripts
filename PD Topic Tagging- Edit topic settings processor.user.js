@@ -2,6 +2,8 @@
 // @name         PD Topic Tagging: Edit topic settings processor
 // @namespace    http://nicholasbarry.com
 // @version      1.1
+// @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20Topic%20Tagging-%20Edit%20topic%20settings%20processor.user.js
+// @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20Topic%20Tagging-%20Edit%20topic%20settings%20processor.user.js
 // @description  Makes it easy to tag a topic based on the content of the topic name, question, and introduction
 // @author       Nicholas Barry
 // @match        http://www.peakdemocracy.com/customers/*/accounts/*/portals/*/forums/Forum_*/issues/Issue_*/edit*

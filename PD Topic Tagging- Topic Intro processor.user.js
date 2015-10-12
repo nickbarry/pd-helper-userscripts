@@ -2,6 +2,8 @@
 // @name         PD Topic Tagging: Topic Intro processor
 // @namespace    http://nicholasbarry.com
 // @version      0.1
+// @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20Topic%20Tagging-%20Topic%20Intro%20processor.user.js
+// @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20Topic%20Tagging-%20Topic%20Intro%20processor.user.js
 // @description  Strips out extraneous elements, and adds spans with appropriate classes around relevant words/phrases.
 // @author       Nicholas Barry
 // @match        http://www.peakdemocracy.com/portals/*/Forum_*/Issue_*
