@@ -2,8 +2,8 @@
 // @name         PD: Statement Review helper
 // @namespace    http://nicholasbarry.com/
 // @version      2.0.5
-// @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper-v2.0.user.js
-// @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper-v2.0.user.js
+// @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper.user.js
+// @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper.user.js
 // @description  Makes it easier and faster to review statements for civility
 // @author       Nicholas Barry
 // @match        https://www.peakdemocracy.com/admin/statement_review
