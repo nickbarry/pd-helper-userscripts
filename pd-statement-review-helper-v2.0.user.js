@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         PD: Statement Review helper 2.0.4
+// @name         PD: Statement Review helper 2.0.5
 // @namespace    http://nicholasbarry.com/
-// @version      2.0.4
+// @version      2.0.5
 // @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper-v2.0.user.js
 // @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper-v2.0.user.js
 // @description  Makes it easier and faster to review statements for civility
@@ -36,6 +36,13 @@ $(document).ready(function() {
         //var main = document.getElementById("statement_review");
         //main.style.lineHeight = "2.2em";
 	}
+    function reviewAuthors(){
+        $('.statements').before($('<div id="authors-from-userscript"></div>'));
+        $('#authors-from-userscript').append($('.author'));
+    }
+    function unReviewAuthors(){
+        $('#authors-from-userscript').remove();
+    }
     function getUpdatedHtml(originalHtml){
         //This stuff is ugly stuff that I haven't taken the time to fix up yet.
         //I wrote it when I was just barely learning Javascript, so sue me.
@@ -71,16 +78,20 @@ $(document).ready(function() {
         $(this).addClass('active');
         
         createStyles(); //hide all the questions, which are bolded, and increase line heights
+
+        reviewAuthors();
         
         statementsDiv.innerHTML = newHtml;
     }
     function unCleanUpStatementReviewPage(){
         $('#clean-up-statement-review-page').removeClass('active');
         $(this).addClass('active');
-        
-        statementsDiv.innerHTML = originalHtml;
-        
+
         $('#userscript-styles').remove();
+
+        unReviewAuthors();
+
+        statementsDiv.innerHTML = originalHtml;
     }
     function createNicoOptionsBox(){
         if(!(document.getElementById('nico-options-box'))){
@@ -128,6 +139,7 @@ $(document).ready(function() {
 
 
 //VERSION LOG
+//2.0.5: Moving statement authors up to the top of the page where I can review them all simultaneously
 //2.0.4: Finishing refactoring per 2.0.3; everything works as before (which wasn't the case with 2.0.3)
 //2.0.3: Partial work refactoring some code to be functional style
 //2.0.2: Setting up script to be uploaded to Github, and be automatically downloadable (updatable) by TamperMonkey
