@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         PD: Statement Review helper 2.0.3
+// @name         PD: Statement Review helper 2.0.4
 // @namespace    http://nicholasbarry.com/
-// @version      2.0.3
+// @version      2.0.4
 // @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper-v2.0.user.js
 // @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper-v2.0.user.js
 // @description  Makes it easier and faster to review statements for civility
@@ -39,16 +39,18 @@ $(document).ready(function() {
     function getUpdatedHtml(originalHtml){
         //This stuff is ugly stuff that I haven't taken the time to fix up yet.
         //I wrote it when I was just barely learning Javascript, so sue me.
-        
+
         var reStr,
             reCommaCap = new RegExp("(, [A-HJ-Z])","gm"),
-            reOther = new RegExp(", Other ","gm");
-        
+            reOther = new RegExp(", Other ","gm"),
+            newHtml;
+
         // Find and replace all instances of strings above with ""
         var newHtml = textsToReplace.reduce(function(htmlStr,str){
             reStr = new RegExp('<br> '+str+'<br>','gim');
             return htmlStr.replace(reStr,'');
-        },newHtml);
+        },originalHtml);
+
         newHtml = textsToGrayOut.reduce(function(htmlStr,str){
             reStr = new RegExp('(\\W)(' + str + ')(\\W)','gim');
             console.log();
@@ -126,6 +128,8 @@ $(document).ready(function() {
 
 
 //VERSION LOG
+//2.0.4: Finishing refactoring per 2.0.3; everything works as before (which wasn't the case with 2.0.3)
+//2.0.3: Partial work refactoring some code to be functional style
 //2.0.2: Setting up script to be uploaded to Github, and be automatically downloadable (updatable) by TamperMonkey
 //2.0.1: Move newHtml stuff into a function; didn't finish yet
 //2.0: Converts bookmarklet to userscript; converts most of the javascript to functional style;
