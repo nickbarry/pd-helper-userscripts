@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PD: Statement Review helper
 // @namespace    http://nicholasbarry.com/
-// @version      2.1
+// @version      3
 // @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper.user.js
 // @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper.user.js
 // @description  Makes it easier and faster to review statements for civility
