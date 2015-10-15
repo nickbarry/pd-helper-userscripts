@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PD: Statement Review helper
 // @namespace    http://nicholasbarry.com/
-// @version      2.0.5
+// @version      2.1
 // @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper.user.js
 // @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/pd-statement-review-helper.user.js
 // @description  Makes it easier and faster to review statements for civility
@@ -18,7 +18,8 @@ $(document).ready(function() {
     var textsToReplace = ['fully support','Yes. Please take me to the next page to give more feedback.','Yes. Please take me to the next page to provide more feedback.','support with reservations',"No thanks. I don't want to provide more feedback.","I don't know",'Not sure','I say Yes','I say No','No comment','Daily','Monthly','Weekly','Never','No opinion','More than once a week','Yes a lot','Not at all','Yes, a lot','Somewhat','I am an employer in the City of Alexandria','I represent or own a Restaurant/Retail/Small Business Group/Chamber of commerce in the City of Alexandria','I am a resident of the City of Alexandria','I am a food truck operator','I work in the City of Alexandria','Arlandria','Carlyle','Del Ray','Old Town','Potomac Yard','Landmark/Cameron Station/Eisenhower West (22304)','Beauregard Corridor (22311/22312)','Other East of Quaker Lane','Under 10','Oct-49','50-99','100-199','200 and over','Spontaneous','Scheduled','Breakfast','Lunch','Dinner','Lunch and dinner','Late night','All except late night','All','High workforce population (large/multiple offices or industrial activity)','Ample parking for customers','High pedestrian activity in vicinity','Other food trucks also vending in the area (clustering of food trucks)','Areas where customers can sit and eat','High residential density (large apartment buildings)','Recreational attractions (active parks, tourism)','Metro station','Shopping area','On any public street;','On public streets only in certain locations;','At private scheduled events only','At specific off street locations in partnership with the property owner','At special events sponsored by the City','All of the above','Unfair regulation','Disruption of local business','Food choices are unhealthy/low nutritional value','Health code violations','Environmental concerns (noise, smells, trash)','Traffic disruption','Pedestrian safety','Sidewalk crowding','Parking','I have no concerns','Hours of Operation','Limit food trucks to certain locations within the city','Allow food truck operations without a permit but require them to meet certain standards','Require a certain city permit to allow food truck operations with conditions','Noise regulations','Retail','Restaurant','Professional/business association','Live','Work','Both','I have not vended in Alexandria','Everywhere in the city','Nowhere in the City','Old Town/Carlyle','Del Ray/Arlandria','West of Quaker Lane','Any Neighborhood locations','Any Business centers','0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100','Agree','Disagree','Female','Less priority','Male','Maybe','More priority','N/A','Neutral','No','No, I do not agree','No, it is not appropriate','None','None of the above','Not applicable','Option 1','Option 2','Option 3','Option 4','Option 5','Somewhat agree','Somewhat disagree','Somewhat oppose','Somewhat support','Strongly agree','Strongly disagree','Strongly oppose','Strongly support','The same amount of priority','Yes','Met Expectations','Exceeded Expectations','Somewhat Met Expectations','Did Not Meet Expectations'].sort(sortLongestFirst),
         textsToGrayOut = ['I represent or own a Restaurant/Retail/Small Business Group/Chamber of commerce in the City of Alexandria','Allow food truck operations without a permit but require them to meet certain standards','Require a certain city permit to allow food truck operations with conditions','At specific off street locations in partnership with the property owner','Limit food trucks to certain locations within the city','Food choices are unhealthy/low nutritional value','large/multiple offices or industrial activity','On public streets only in certain locations;','I am an employer in the City of Alexandria','Other food trucks also vending in the area','I am a resident of the City of Alexandria','Other food trucks also vending in the area','Landmark/Cameron Station/Eisenhower West','At special events sponsored by the City','Areas where customers can sit and eat','High pedestrian activity in vicinity','Professional/business association','I work in the City of Alexandria','At private scheduled events only','I have not vended in Alexandria','Disruption of local business','Ample parking for customers','The same amount of priority','I am a food truck operator','Any Neighborhood locations','Other East of Quaker Lane','High workforce population','clustering of food trucks','large apartment buildings','No, it is not appropriate','High residential density','Recreational attractions','Health code violations','Environmental concerns','Everywhere in the city','All except late night','active parks, tourism','On any public street;','noise, smells, trash','Any Business centers','Beauregard Corridor','Nowhere in the City','West of Quaker Lane','Traffic disruption','I have no concerns','Hours of Operation','No, I do not agree','Unfair regulation','Pedestrian safety','Sidewalk crowding','Noise regulations','Del Ray/Arlandria','None of the above','Somewhat disagree','Strongly disagree','Lunch and dinner','All of the above','Old Town/Carlyle','Somewhat support','Strongly support','Somewhat oppose','Strongly oppose','Not applicable','Somewhat agree','Strongly agree','Metro station','Shopping area','Less priority','More priority','Potomac Yard','200 and over','Spontaneous','Late night','Restaurant','Arlandria','Scheduled','Breakfast','Old Town','Under 10','Disagree','Option 1','Option 2','Option 3','Option 4','Option 5','Carlyle','Del Ray','100-199','Parking','Neutral','Oct-49','Dinner','Retail','Female','50-99','Lunch','Agree','Maybe','Live','Work','Both','Male','All','N/A'].sort(sortLongestFirst),
         statementsDiv = document.getElementsByClassName('statements')[0],
-        originalHtml = statementsDiv.innerHTML;
+        originalHtml = statementsDiv.innerHTML,
+        $spinner = $('#loading_floater');
     
     function sortLongestFirst(a,b){
         if(a.length < b.length) return 1;
@@ -77,6 +78,8 @@ $(document).ready(function() {
         reviewAuthors();
         
         statementsDiv.innerHTML = newHtml;
+        
+        $('.mark_all_as_civil').on('click.helper',checkWhenToReload);
     }
     function unCleanUpStatementReviewPage(){
         $('#clean-up-statement-review-page').removeClass('active');
@@ -87,6 +90,8 @@ $(document).ready(function() {
         unReviewAuthors();
 
         statementsDiv.innerHTML = originalHtml;
+        
+        $('.mark_all_as_civil').off('click.helper');
     }
     function createNicoOptionsBox(){
         if(!(document.getElementById('nico-options-box'))){
@@ -111,16 +116,17 @@ $(document).ready(function() {
             appendTo($('#statement-review-btn-group')).
             click(unCleanUpStatementReviewPage);
     }
-    function reloadPage(){
-        
+    function reloadPageWhenReady(){
+        if($spinner.css('left') == '-100px'){
+            document.location.reload(); //Reload page
+        } //else do nothing, as the page is still processing the statements
     }
-
+    function checkWhenToReload(){
+        window.setInterval(reloadPageWhenReady, 300);
+    }
         
     createNicoOptionsBox();
     cleanUpStatementReviewPage();
-
-    //Testing
-
 });
 
 /*
@@ -135,6 +141,7 @@ $(document).ready(function() {
 
 
 //VERSION LOG
+//2.1: automatically reload the page once I mark statements civil
 //2.0.5: Moving statement authors up to the top of the page where I can review them all simultaneously
 //2.0.4: Finishing refactoring per 2.0.3; everything works as before (which wasn't the case with 2.0.3)
 //2.0.3: Partial work refactoring some code to be functional style
