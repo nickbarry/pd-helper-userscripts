@@ -2,7 +2,6 @@
 // @name         PD topics - add Intro edit tabs
 // @namespace    http://nicholasbarry.com/
 // @version      0.1
-// @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20topics%20-%20add%20Intro%20edit%20tabs.user.js
 // @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20topics%20-%20add%20Intro%20edit%20tabs.user.js
 // @description  Adds "Edit" tabs to the topic intro pages, when in Configure mode
 // @author       Nicholas Barry

@@ -2,7 +2,6 @@
 // @name         PD topic search link helper
 // @namespace    http://nicholasbarry.com
 // @version      0.1
-// @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20topic%20search%20link%20helper.user.js
 // @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20topic%20search%20link%20helper.user.js
 // @description  Adds handy links to topic search pages, allowing me to quickly edit the settings and view the introductions to the displayed topics.
 // @author       Nicholas Barry

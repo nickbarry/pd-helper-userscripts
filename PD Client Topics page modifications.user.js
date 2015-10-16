@@ -2,7 +2,6 @@
 // @name         PD Client Topics page modifications
 // @namespace    http://nicholasbarry.com/
 // @version      0.2
-// @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20Client%20Topics%20page%20modifications.user.js
 // @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20Client%20Topics%20page%20modifications.user.js
 // @description  Adds more links to the table of topics
 // @author       Nicholas barry

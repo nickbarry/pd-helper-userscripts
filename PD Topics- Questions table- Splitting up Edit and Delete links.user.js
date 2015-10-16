@@ -2,7 +2,6 @@
 // @name         PD Topics: Questions table: Splitting up Edit and Delete links
 // @namespace    http://nicholasbarry.com
 // @version      0.1
-// @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20Topics-%20Questions%20table-%20Splitting%20up%20Edit%20and%20Delete%20links.user.js
 // @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20Topics-%20Questions%20table-%20Splitting%20up%20Edit%20and%20Delete%20links.user.js
 // @description  Separates the Edit and Delete links into two separate cells so they never stack
 // @author       Nicholas Barry

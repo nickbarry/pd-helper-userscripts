@@ -2,7 +2,6 @@
 // @name         PD Satisfaction Survey filter
 // @namespace    http://nicholasbarry.com
 // @version      0.1
-// @updateURL    https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20Satisfaction%20Survey%20filter.user.js
 // @downloadURL  https://github.com/nickbarry/pd-helper-userscripts/raw/master/PD%20Satisfaction%20Survey%20filter.user.js
 // @description  Hides satisfaction surveys from clients of Rob's, and those with no comments
 // @author       Nicholas Barry
